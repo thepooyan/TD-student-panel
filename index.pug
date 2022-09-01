@@ -1,3 +1,5 @@
+include mixins.pug
+
 doctype html
 html(lang="en")
     head
@@ -40,48 +42,11 @@ html(lang="en")
                         a(href="#practice") تمرین‌های من
                 button خروج
             
-            .summary#spotPlayer
-                h3
-                    .crumb 
-                        .in
-                    |رمز اسپات پلیر
-                .items 
-                    .item نمونه
-                button مشاهده
-            .summary#source
-                h3
-                    .crumb 
-                        .in
-                    |سورس کد جلسات
-                .items 
-                    .item سورس جلسه 1
-                    .item سورس جلسه 2
-                    .item سورس جلسه 3
-                    .item سورس جلسه 4
-                button مشاهده
-            .summary#tasks
-                h3
-                    .crumb 
-                        .in
-                    |لیست تکالیف
-                .items 
-                    .item تکلیف استاد 1
-                    .item تکلیف استاد 2
-                    .item تکلیف استاد 3
-                    .item تکلیف استاد 4
-                button مشاهده
-            .summary#practice
-                h3
-                    .crumb 
-                        .in
-                    |تمرین های من
-                .items 
-                    .item تمرین 1
-                    .item تمرین 2
-                    .item تمرین 3
-                    .item تمرین 4
-                button مشاهده
-            
+            +summary('spotPlayer', 'رمز اسپات پلیر', 'نمونه رمز')            
+            +summary('source', 'سورس کد جلسات', 'سورس جلسه')            
+            +summary('tasks', 'لیست تکالیف', 'تکلیف استاد')            
+            +summary('practice', 'تمرین های من', 'تمرین')            
+
             section.tasks.fullScreen 
                 h2 تکالیف استاد دوره
                 .pad
