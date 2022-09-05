@@ -1,39 +1,5 @@
-@import './0Export/Content/source/variables';
-@import './0Export/Content/source/Fonts';
-
-@import 'chat';
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #fafafa;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-button {
-    font-family: iransansx;
-    cursor: pointer;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-:root {
-    --border-radius: 30px;
-}
-
 #studentPanelPage {
-    margin: 0;
-    padding: 0;
-    direction: rtl;
-    font-family: iransansx;
+
 
     > header {
         background-color: #fdac14;

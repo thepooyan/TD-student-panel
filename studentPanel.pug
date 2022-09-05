@@ -1,0 +1,130 @@
+section#studentPanelPage
+    header 
+        .right 
+            img(src="Content/images/Student Panel/1p.png", alt="Tahlildadeh").logo
+            p. 
+                رمز اسپات پلیر را از قسمت مربوطه دریافت کنید.
+                سورس کد‌های پروژه قابل دانلود هستند.
+                می‌توانید تمرینات و تکالیف را دریافت کنید و تمرینات حل شده را به همراه عکس، فیلم، و سورس کد بارگذاری
+                نمایید.
+                در قسمت تمرینات من کل فعالیت های شما در خصوص تمرینات قابل دسترسی و برسی است.
+        img.header(src="Content/images/Student Panel/Asset 5.png", alt="Tahlildadeh academy")
+        img.side(src="Content/images/Student Panel/Academy-Side.png", alt="Tahlildadeh academy")
+
+    main 
+        nav 
+            h2 سلام رضا!
+            ul 
+                li
+                    div 
+                li 
+                    a(href="#spotPlayer") رمز اسپات پلیر 
+                li 
+                    a(href="#source") سورس کد جلسات
+                li 
+                    a(href="#tasks") لیست تکالیف
+                li 
+                    a(href="#myPractice") تمرین‌های من
+            button خروج
+        
+        .summary(id= 'spotPlayer')
+            h3
+                .crumb 
+                    .in
+                |رمز اسپات پلیر
+            .items 
+                .item
+                    span دوره آموزش طراحی سایت - تابستان 98
+                    span 1397/5/25
+                    span.code sadf54d6h54ds6gf4d6f5g4df6
+                    i.far.fa-copy
+                .item
+                    span دوره آموزش طراحی سایت - زمستان 97
+                    span 1397/5/25
+                    span.code sklsgwgcs5c5f5e6er4e654eg5r
+                    i.far.fa-copy
+            button بستن
+        .summary(id= 'source')
+            h3
+                .crumb 
+                    .in
+                |سورس کد جلسات
+            .items 
+                .item
+                    span دوره آموزش طراحی سایت - زمستان 97
+                    span 1397/5/25
+                    span جلسه اول
+                    a(href="#") دانلود
+                .item
+                    span دوره آموزش طراحی سایت - زمستان 97
+                    span 1397/6/03
+                    span جلسه دوم
+                    a(href="#") دانلود
+                .item
+                    span دوره آموزش طراحی سایت - زمستان 97
+                    span 1397/6/18
+                    span جلسه سوم
+                    a(href="#") دانلود
+            button بستن
+        .summary(id= 'tasks')
+            h3
+                .crumb 
+                    .in
+                |لیست تکالیف
+            .items 
+                .item
+                    span دوره آموزش طراحی سایت - زمستان 97
+                    span 1397/5/25
+                    span جلسه اول
+                    span توضیح مختصر:
+                .item یک div با شکل مربع کشیده شود.
+                .item
+                    span دوره آموزش طراحی سایت - زمستان 97
+                    span 1397/6/03
+                    span جلسه دوم
+                    span توضیح مختصر:
+                .item یک صفحه کامل با استفاده از html و css طراحی شود که بتواند با سایت معتبر دیجی کالا در تمام زمینه ها رقابت کند!
+            button بستن
+
+        section#myPractice.fullScreen 
+            h2 تمرین های من
+            .pad
+                .item نمونه
+                .item نمونه
+                .item نمونه
+
+        form.practiceModal
+            .textPart
+                h3 متن
+                textarea(id="", name="", cols="", rows="8", placeholder="متن مورد نظر را وارد کنید:") 
+
+            .part 
+                h3 تصویر
+                i.fas.fa-plus-circle
+
+                .input 
+                    label(for="photo-1") 
+                        span
+                        input(type="file")#photo-1
+                    i.fas.fa-times
+            .part 
+                h3 فیلم
+                i.fas.fa-plus-circle
+
+                .input 
+                    label(for="film-1") 
+                        span
+                        input(type="file")#film-1
+                    i.fas.fa-times
+            .part 
+                h3 سورس کد
+                i.fas.fa-plus-circle
+
+                .input 
+                    label(for="source-1") 
+                        span
+                        input(type="file")#source-1
+                    i.fas.fa-times
+            button(type="submit") ارسال
+        
+        include chat
