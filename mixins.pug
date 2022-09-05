@@ -1,14 +1,12 @@
-mixin summary(id, title, sample='نمونه')
+mixin summary(id, title, sample=[1,2])
     .summary(id= id)
         h3
             .crumb 
                 .in
             =`${title}`
         .items 
-            .item= sample
-            .item= sample
-            .item= sample
-            .item= sample
+            each i in sample
+                .item= i
         button بستن
 
 

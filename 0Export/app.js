@@ -45,6 +45,18 @@ $("a").on('click', function (event) {
   }
 });
 
+//copy spot player code
+dc.queries('#spotPlayer i').forEach(item=>{
+  item.onclick = () => {
+    let copyText = item.parentElement.querySelector('.code').innerHTML;
+    navigator.clipboard.writeText(copyText);
+    item.classList.add('copied');
+    setTimeout(() => {
+      item.classList.remove('copied')
+    }, 3000);
+  }
+})
+
 //updload practice
 (function () {
 

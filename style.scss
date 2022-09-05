@@ -286,9 +286,42 @@ a {
                     padding: .3em 1em;
                     background-color: #ededed;
                     margin-bottom: .5em;
+                    display: flex;
+                    justify-content: space-between;
 
                     &:nth-child(2n) {
                         background-color: transparent;
+                    }
+
+                    i {
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        color: #08579e;
+                        position: relative;
+
+                        &::after {
+                            content: "کپی شد!";
+                            position: absolute;
+                            right: -76px;
+                            font-family: 'IRANSansX';
+                            background: grey;
+                            color: white;
+                            padding: 0.4em 0.6em;
+                            border-radius: 20px 20px 20px 0;
+                            bottom: 0;
+                            opacity: 0;
+                            transition: .1s;
+                        }
+                        &.copied::after {
+                            bottom: 50%;
+                            opacity: 100;
+                        }
+                    }
+
+                    a {
+                        color: #08579e;
+                        font-weight: bold;
                     }
                 }
             }
@@ -331,7 +364,7 @@ a {
         }
         }
 
-        .tasks {
+        #myPractice {
             --blue: #4fc2f8;
             position: relative;
             padding-top: 4.3em;
@@ -373,8 +406,8 @@ a {
                     content: '';
                     display: block;
                     position: absolute;
-                    bottom: 0;
-                    right: 0;
+                    bottom: -1px;
+                    right: -1px;
                     --size: 9em;
                     border-top: var(--size) solid #eee;
                     border-right: var(--size) solid #4ab4e4;
@@ -410,7 +443,7 @@ a {
             }
         }
 
-        .tasksModal {
+        .practiceModal {
             --green: #00a99e;
             color: #5b5b5b;
             padding: 0 8em;
@@ -471,7 +504,7 @@ a {
 
                     i.fa-times {
                         position: absolute;
-                        left: calc( 4% / 2 );
+                        left: calc(4% / 2);
                         top: 0;
                         bottom: 0;
                         display: flex;
@@ -520,5 +553,5 @@ a {
                 padding: 0.1em 1.8em;
             }
         }
-    }
+}
 }
