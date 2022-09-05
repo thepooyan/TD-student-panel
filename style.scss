@@ -1,7 +1,7 @@
 @import './0Export/Content/source/variables';
 @import './0Export/Content/source/Fonts';
 
-@import 'qComments';
+@import 'chat';
 
 * {
     box-sizing: border-box;
@@ -35,7 +35,7 @@ a {
     direction: rtl;
     font-family: iransansx;
 
-    header {
+    > header {
         background-color: #fdac14;
         position: relative;
         padding-top: 3em;
