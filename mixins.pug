@@ -9,4 +9,12 @@ mixin summary(id, title, sample='نمونه')
             .item= sample
             .item= sample
             .item= sample
-        button مشاهده
+        button بستن
+
+
+
+mixin comment(user, text, type=false)
+    div(class=type?'others':'')
+        .icon(data-user=user)
+        span
+            =text

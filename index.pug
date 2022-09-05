@@ -45,17 +45,15 @@ html(lang="en")
             +summary('spotPlayer', 'رمز اسپات پلیر', 'نمونه رمز')            
             +summary('source', 'سورس کد جلسات', 'سورس جلسه')            
             +summary('tasks', 'لیست تکالیف', 'تکلیف استاد')            
-            +summary('practice', 'تمرین های من', 'تمرین')            
 
             section.tasks.fullScreen 
-                h2 تکالیف استاد دوره
+                h2 آپلود تمارین
                 .pad
                     .item تکلیف استاد
                     .item تکلیف استاد
                     .item تکلیف استاد
 
-            form.practice
-                h2 آپلود تمارین
+            form.tasksModal
                 .textPart
                     h3 متن
                     textarea(id="", name="", cols="", rows="8", placeholder="متن مورد نظر را وارد کنید:") 
@@ -88,3 +86,5 @@ html(lang="en")
                             input(type="file")#source-1
                         i.fas.fa-times
                 button(type="submit") ارسال
+            
+            include chat
