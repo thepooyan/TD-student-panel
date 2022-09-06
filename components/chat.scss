@@ -123,9 +123,9 @@
             flex: 0 0 90%;
             font-family: inherit;
             border-radius: 5px;
-            border: 1px solid #bdbdbd;
+            border: 1px solid #73bcca;
             color: #42515a;
-            padding: .3em 1.1em;
+            padding: .5em 1.1em;
             font-size: .9em;
             cursor: auto;
 
@@ -135,7 +135,7 @@
 
             &:focus {
                 outline: none;
-                border-color: #969696;
+                border-color: #7fcedd;
             }
         }
 

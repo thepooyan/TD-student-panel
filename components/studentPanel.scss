@@ -425,7 +425,14 @@
                     flex-direction: column;
                     width: 100%;
                     max-height: 91%;
-                    overflow: scroll;
+                    overflow-y: scroll;
+
+                    -ms-overflow-style: none;  /* IE and Edge */
+                    scrollbar-width: none;  /* Firefox */
+                    
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
 
                     span {
                         border: 2px solid var(--blue);
@@ -462,8 +469,14 @@
             main {
                 flex: 8;
                 max-height: 96%;
-                overflow: scroll;
+                overflow-y: scroll;
                 display: none;
+
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+                &::-webkit-scrollbar {
+                    display: none;
+                }
 
                 &.active {
                     display: block;
