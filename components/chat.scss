@@ -1,19 +1,18 @@
 ﻿section.chat {
-    position: sticky;
-    top: 0;
-    display: block;
     background-color: #fff;
     box-shadow: 2px 2px 10px #6497bc;
-    margin: auto;
     border: 2px solid #7fcedd;
+    margin: auto;
     border-radius: 14px;
     overflow: hidden;
+    height: 98vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 
     header {
         font-size: 3em;
-        padding: 2em;
         position: relative;
-        margin-bottom: 1.5em;
         font-weight: 900;
         color: #f39200;
         text-align: center;
@@ -23,7 +22,29 @@
         // background-color: #f5f5f5;
         background-color: #f5f5f5;
         color: #42515a;
-        padding: 2em 5em;
+        padding: 2em 1em;
+        overflow-y: scroll;
+
+        /* width */
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background-color: #cdcdcd;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: white;
+            border-radius: 8px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #3bc6d8;
+        }
 
         >* {
             @include flex(fs, c);
@@ -86,6 +107,46 @@
                     right: unset;
                     left: 0;
                 }
+            }
+        }
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-end;
+        gap: 1em;
+        padding: .8em .5em;
+
+        label {
+            flex: 0 0 90%;
+            font-family: inherit;
+            border-radius: 5px;
+            border: 1px solid #bdbdbd;
+            color: #42515a;
+            padding: .3em 1.1em;
+            font-size: .9em;
+            cursor: auto;
+
+            input {
+                display: none;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        button {
+            flex: 0 0 7%;
+            border-radius: 10px;
+            border: none;
+            padding: 0.4em 0;
+            transition: .2s;
+
+            &:hover {
+                background-color: #e5e5e5;
             }
         }
     }

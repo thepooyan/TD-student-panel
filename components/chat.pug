@@ -4,10 +4,6 @@ section.chat
 
     header چت و گفتگو!
 
-    form
-        textarea
-        button ارسال    
-
     .veiw 
         - let longComment = 'سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟';
         - let smallComment = 'سلام آیا میشه در دوره به صورت غیر حضوری شرکت کرد؟';
@@ -27,4 +23,20 @@ section.chat
         +comment('اکبر', longComment, true)
         +comment('اکبر', smallComment)
         +comment('اکبر', longComment, true)
+        +comment('پویان', smallComment, true)
+        +comment('پویان', smallComment, true)
+        +comment('اکبر', longComment, true)
+        +comment('اکبر', longComment, true)
+        +comment('پویان', smallComment)
+        +comment('پویان', smallComment, true)
+        +comment('پویان', longComment)
+        +comment('پویان', smallComment, true)
+        +comment('اکبر', longComment)
+        +comment('اکبر', longComment, true)
+        +comment('اکبر', smallComment)
+        +comment('اکبر', longComment, true)
 
+    form
+        label(for="chatInput", contenteditable) 
+            input#chatInput
+        button ارسال    

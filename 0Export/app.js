@@ -104,13 +104,13 @@ dc.queries('#spotPlayer i').forEach(item=>{
       item.classList.remove('copied')
     }, 3000);
   }
-})
+});
 
 //updload practice
 (function () {
 
   //input adder 
-  dc.queries('.practice i.fa-plus-circle').forEach(item => {
+  dc.queries('#practiceModal i.fa-plus-circle').forEach(item => {
     item.addEventListener('click', () => {
       //clone the last input in the secition
       let clone = item.parentElement.querySelectorAll('.input');
@@ -152,7 +152,7 @@ dc.queries('#spotPlayer i').forEach(item=>{
       setTimeout(() => { item.parentElement.remove() }, 200);
     }
   }
-  dc.queries('.practice i.fa-times').forEach(item => {
+  dc.queries('#practiceModal i.fa-times').forEach(item => {
     removerEvnt(item)
   })
 
@@ -162,15 +162,15 @@ dc.queries('#spotPlayer i').forEach(item=>{
       item.parentElement.querySelector('span').innerHTML = e.target.value;
     })
   }
-  dc.queries('.practice input').forEach(item => { inputChangeHandler(item) })
+  dc.queries('#practiceModal input').forEach(item => { inputChangeHandler(item) })
 
   //clear all
   function clearPracticeForm() {
-    dc.queries('.practice .input label span').forEach(item=>{
+    dc.queries('#practiceModal .input label span').forEach(item=>{
       item.innerHTML = '';
     })
-    dc.query('.practice').reset();
-    dc.queries('.practice .part').forEach(item=>{
+    dc.query('#practiceModal').reset();
+    dc.queries('#practiceModal .part').forEach(item=>{
       let inputs= item.querySelectorAll('.input');
       if (inputs.length > 1) {
 
@@ -188,9 +188,13 @@ dc.queries('#spotPlayer i').forEach(item=>{
   }
 
   //upload submit
-  dc.query('.practice').onsubmit = (e) => {
+  dc.query('#practiceModal').onsubmit = (e) => {
     e.preventDefault();
     clearPracticeForm();
     alert('form submitted!')
   }
 })()
+
+//scroll chat to the end
+let chat = dc.query('.chat .veiw');
+chat.scrollTo(0,chat.scrollHeight+500)
