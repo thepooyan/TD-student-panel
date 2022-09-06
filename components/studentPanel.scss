@@ -475,10 +475,11 @@
                     border: 2px solid #d6d6d6;
                     border-radius: 15px;
                     margin-bottom: 0.5em;
-
+                    cursor: pointer;
 
                     &.active {
                         color: black;
+                        cursor: initial;
 
                         .details {
                             max-height: 5em;
