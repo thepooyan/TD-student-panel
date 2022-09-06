@@ -77,23 +77,34 @@ section#studentPanelPage
                     span 1397/5/25
                     span جلسه اول
                     span توضیح مختصر:
-                .item یک div با شکل مربع کشیده شود.
+                .item.des یک div با شکل مربع کشیده شود.
                 .item
                     span دوره آموزش طراحی سایت - زمستان 97
                     span 1397/6/03
                     span جلسه دوم
                     span توضیح مختصر:
-                .item یک صفحه کامل با استفاده از html و css طراحی شود که بتواند با سایت معتبر دیجی کالا در تمام زمینه ها رقابت کند!
+                .item.des یک صفحه کامل با استفاده از html و css طراحی شود که بتواند با سایت معتبر دیجی کالا در تمام زمینه ها رقابت کند!
             button بستن
 
         section#myPractice.fullScreen 
-            - let sixteen = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+            - let sixteen = [1,2,3];
             h2 تمرین های من
             .pad
                 each i in sixteen
                     main(id="session" + i, data-group="padMain",class=i==1?'active':'')
-                        each ii in [1,2,3,4,5]
-                            .item= `جلسه ${i} در نمونه ${ii}`
+                        each ii in [1,2,3]
+                            //- .item= `دوره آموزش طراحی سایت تابستان 98 - جلسه ${i} تمرین ${ii}`
+                            .item(data-onclick="active", data-group="padItem")
+                                .top
+                                    span دوره آموزش طراحی سایت، تابستان 98
+                                    span= `جلسه ${i}`
+                                    span= `تمرین ${ii}`
+                                .details 
+                                    p متنی که در آپلود تمرین نوشته شده بود
+                                    .downloads
+                                        a(href="#") دانلود تصویر
+                                        a(href="#") دانلود سورس کد
+                                        a(href="#") دانلود فیلم
                 aside 
                     .sessions 
                         each i in sixteen
@@ -101,7 +112,7 @@ section#studentPanelPage
                     a(href="#practiceModal") 
                         button افزودن                    
 
-        form.practiceModal
+        form#practiceModal
             .textPart
                 h3 متن
                 textarea(id="", name="", cols="", rows="8", placeholder="متن مورد نظر را وارد کنید:") 

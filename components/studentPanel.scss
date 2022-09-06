@@ -1,4 +1,9 @@
 #studentPanelPage {
+    a {
+        color: #08579e;
+        font-weight: bold;
+    }
+
     >header {
         background-color: #fdac14;
         position: relative;
@@ -133,6 +138,8 @@
                     a,
                     span,
                     div {
+                        font-weight: inherit;
+                        color: inherit;
                         width: 100%;
                         height: 100%;
                         border-radius: 50%;
@@ -194,6 +201,19 @@
             box-shadow: 0 0 8px #b3b3b3;
             border-radius: calc(var(--border-radius) / 4);
             position: relative;
+
+            &#tasks {
+                .items .item {
+                    &:nth-child(2n) {
+                        background-color: #ededed;
+                    }
+
+                    &.des {
+                        background-color: transparent;
+                        font-weight: 100;
+                    }
+                }
+            }
 
             &::before {
                 content: "";
@@ -291,11 +311,6 @@
                             bottom: 50%;
                             opacity: 100;
                         }
-                    }
-
-                    a {
-                        color: #08579e;
-                        font-weight: bold;
                     }
                 }
             }
@@ -417,6 +432,7 @@
                         margin-bottom: .7em;
                         transition: .2s;
                         cursor: pointer;
+
                         &.active {
                             background-color: var(--blue);
                             color: white;
@@ -424,14 +440,18 @@
                     }
                 }
 
-                button {
-                    background-color: var(--blue);
-                    border: none;
-                    padding: 0.4em 0;
-                    font-weight: 500;
-                    border-radius: 10px;
+                >a {
                     width: 100%;
-                    font-size: 1.3em;
+
+                    button {
+                        background-color: var(--blue);
+                        border: none;
+                        padding: 0.4em 0;
+                        font-weight: 500;
+                        border-radius: 10px;
+                        width: 100%;
+                        font-size: 1.3em;
+                    }
                 }
             }
 
@@ -446,10 +466,40 @@
                 }
 
                 .item {
+                    color: grey;
                     padding: 1em 2em;
                     border: 2px solid #d6d6d6;
                     border-radius: 15px;
                     margin-bottom: 0.5em;
+
+
+                    &.active {
+                        color: black;
+
+                        .details {
+                            max-height: 5em;
+                        }
+                    }
+
+                    .top {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                    .details {
+                        transition: .3s;
+                        overflow: hidden;
+                        max-height: 0;
+                        padding: 0 1.5em;
+                        margin-bottom: 1em;
+                        font-size: .9em;
+                        color: grey;
+                        font-weight: 100;
+
+                        .downloads {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                    }
                 }
             }
         }
@@ -476,7 +526,7 @@
         }
     }
 
-    .practiceModal {
+    #practiceModal {
         --green: #00a99e;
         color: #5b5b5b;
         padding: 0 8em;
