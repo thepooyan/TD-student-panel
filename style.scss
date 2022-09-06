@@ -1,8 +1,8 @@
-@import './source/variables';
-@import './source/Fonts';
+@import './components/source/variables';
+@import './components/source/Fonts';
 
-@import '../chat';
-@import '../studentPanel.scss';
+@import './components/chat';
+@import './components/studentPanel';
 
 * {
     box-sizing: border-box;
