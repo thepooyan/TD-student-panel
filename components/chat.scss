@@ -84,7 +84,7 @@
                 font-weight: 500;
 
                 &::before {
-                    content: '12:45 PM';
+                    content: attr(data-time);
                     position: absolute;
                     top: calc(100% + 0.2em);
                     right: 0;

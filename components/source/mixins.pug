@@ -14,5 +14,5 @@ mixin summary(id, title, sample=[1,2])
 mixin comment(user, text, type=false)
     div(class=type?'others':'')
         .icon(data-user=user)
-        span
+        span(data-time="12:45")
             =text
