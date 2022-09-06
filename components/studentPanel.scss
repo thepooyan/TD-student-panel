@@ -415,6 +415,12 @@
                         padding: 0.4em 0;
                         font-weight: bold;
                         margin-bottom: .7em;
+                        transition: .2s;
+                        cursor: pointer;
+                        &.active {
+                            background-color: var(--blue);
+                            color: white;
+                        }
                     }
                 }
 
@@ -433,6 +439,11 @@
                 flex: 8;
                 max-height: 96%;
                 overflow: scroll;
+                display: none;
+
+                &.active {
+                    display: block;
+                }
 
                 .item {
                     padding: 1em 2em;

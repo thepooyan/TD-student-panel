@@ -90,14 +90,16 @@ section#studentPanelPage
             - let sixteen = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
             h2 تمرین های من
             .pad
-                main
-                    each i in sixteen
-                        .item= `نمونه ${i}`
+                each i in sixteen
+                    main(id="session" + i, data-group="padMain",class=i==1?'active':'')
+                        each ii in [1,2,3,4,5]
+                            .item= `جلسه ${i} در نمونه ${ii}`
                 aside 
                     .sessions 
                         each i in sixteen
-                            span= `جلسه ${i}`                 
-                    button افزودن                    
+                            span(data-onclick="active", data-group="padSession", data-target="#session"+i,class=i==1?'active':'')= `جلسه ${i}`                 
+                    a(href="#practiceModal") 
+                        button افزودن                    
 
         form.practiceModal
             .textPart
