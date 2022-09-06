@@ -46,10 +46,11 @@
             background: #3bc6d8;
         }
 
-        >* {
+        >*:not(.date) {
             @include flex(fs, c);
             flex-direction: row;
             padding-bottom: 2.5em;
+            
 
             .icon {
                 --wid: 4em;
@@ -75,7 +76,7 @@
             }
 
             span {
-                background-color: #fff;
+                background-color: #7fcedd;
                 padding: 1em;
                 border-radius: 25px 25px 0 25px;
                 margin: 0 1em;
@@ -101,6 +102,7 @@
             }
 
             span {
+                background-color: #C8E0FC;
                 border-radius: 25px 25px 25px 0;
 
                 &::before {
@@ -108,6 +110,16 @@
                     left: 0;
                 }
             }
+        }
+
+        .date {
+            margin: 1em auto;
+            display: block;
+            text-align: center;
+            background: #d6d6d6;
+            width: max-content;
+            padding: 0.2em 1em;
+            border-radius: 10px;
         }
     }
 
