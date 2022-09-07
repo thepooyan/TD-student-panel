@@ -36,6 +36,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
+            z-index: 1;
         }
 
         >.side {
@@ -43,6 +44,13 @@
             right: -70px;
             bottom: 0;
             height: 100%;
+        }
+
+        .top {
+            position: absolute;
+            top: -9em;
+            left: 0;
+            width: 43em;
         }
     }
 
@@ -427,9 +435,11 @@
                     max-height: 91%;
                     overflow-y: scroll;
 
-                    -ms-overflow-style: none;  /* IE and Edge */
-                    scrollbar-width: none;  /* Firefox */
-                    
+                    -ms-overflow-style: none;
+                    /* IE and Edge */
+                    scrollbar-width: none;
+                    /* Firefox */
+
                     &::-webkit-scrollbar {
                         display: none;
                     }
@@ -472,8 +482,11 @@
                 overflow-y: scroll;
                 display: none;
 
-                -ms-overflow-style: none;  /* IE and Edge */
-                scrollbar-width: none;  /* Firefox */
+                -ms-overflow-style: none;
+                /* IE and Edge */
+                scrollbar-width: none;
+
+                /* Firefox */
                 &::-webkit-scrollbar {
                     display: none;
                 }
