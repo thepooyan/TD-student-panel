@@ -197,8 +197,42 @@
                 border: none;
                 background: none;
                 font-size: 1.3em;
-                font-weight: 500;
+                font-weight: bold;
                 padding: 0.6em;
+            }
+
+            > div {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                .twoGuys {
+                    width: 15em;
+                }
+                a.chat {
+                    white-space: nowrap;
+                    display: inline-block;
+                    background-color: white;
+                    border-radius: 50%;
+                    color: #cc1130;
+                    font-weight: 900;
+                    --wid: 9em;
+                    width: var(--wid);
+                    height: var(--wid);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    box-shadow: 0 10px 11px 1px #092c4570;
+                    position: relative;
+
+                    &::before {
+                        content: "";
+                        background: url('/0Export/Content/images/Student Panel/Asset10.png');
+                        width: 16em;
+                        height: 11em;
+                        position: absolute;
+                        background-size: cover;
+                    }
+                }
             }
         }
 
