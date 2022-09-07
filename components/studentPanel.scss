@@ -478,7 +478,7 @@
 
             main {
                 flex: 8;
-                max-height: 96%;
+                max-height: 78%;
                 overflow-y: scroll;
                 display: none;
 
@@ -541,7 +541,7 @@
             content: "";
             background: url("Content/images/Student\ Panel/Asset 7.png");
             background-size: cover;
-            --width: 35vw;
+            --width: 30vw;
             width: var(--width);
             height: var(--width);
             position: absolute;
@@ -555,6 +555,7 @@
             left: 0;
             right: unset;
             z-index: -2;
+            background-position: right;
         }
     }
 

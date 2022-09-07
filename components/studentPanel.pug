@@ -95,7 +95,7 @@ section#studentPanelPage
             .pad
                 each i in sixteen
                     main(id="session" + i, data-group="padMain",class=i==1?'active':'')
-                        each ii in [1,2,3]
+                        each ii in [1,2,3, 4, 5, 6, 7, 8]
                             //- .item= `دوره آموزش طراحی سایت تابستان 98 - جلسه ${i} تمرین ${ii}`
                             .item(data-onclick="active", data-group="padItem")
                                 .top
