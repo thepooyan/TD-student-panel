@@ -100,7 +100,7 @@ $(function () {
     item.onclick = () => {
       let copyText = item.parentElement.querySelector('.code').innerHTML;
       navigator.clipboard.writeText(copyText);
-      dc.queries('#spotPlayer i.copied').forEach(i=>{
+      dc.queries('#spotPlayer i.copied').forEach(i => {
         i.classList.remove('copied')
       })
       item.classList.add('copied');
@@ -215,7 +215,7 @@ $(function () {
     var ampm = hours >= 12 ? 'pm' : 'am';
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0'+minutes : minutes;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
   }
@@ -246,26 +246,28 @@ $(function () {
 
   function chatSubmit(e) {
     if (e.preventDefault) e.preventDefault();
-    let label = dc.query('#chat form label');
+    let input = dc.query('#chat form .input');
 
+    let inputTxt = input.innerText;
     if (!inputTxt) return;
-    let inputTxt = label.innerText;
     inputTxt = inputTxt.replace(/\n/g, '<br/>');  //replace /n with br tag
     inputTxt = inputTxt.replace(/(<br\/>)+$/g, ''); //remove one or more occurence of br tag at the end of text
 
     dc.query('#chat .veiw').appendChild(createMsg(inputTxt));
     scrollChat();
-    label.innerText = '';
+    input.innerText = '';
   }
 
+  let br = false;
   //chat input details
-  dc.query('#chat label').onkeydown = (e) => {
+  dc.query('#chat .input').onkeydown = (e) => {
     if (e.keyCode == 13 && !e.shiftKey) {
       chatSubmit(e);
     }
   }
 
-
-
-
+  dc.query('#chat .input').onkeyup = (e) => {
+    if (e.target.innerHTML === "<br>")
+    e.target.innerHTML = '';
+  }
 })
