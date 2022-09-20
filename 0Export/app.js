@@ -248,6 +248,7 @@ $(function () {
     if (e.preventDefault) e.preventDefault();
     let label = dc.query('#chat form label');
 
+    if (!inputTxt) return;
     let inputTxt = label.innerText;
     inputTxt = inputTxt.replace(/\n/g, '<br/>');  //replace /n with br tag
     inputTxt = inputTxt.replace(/(<br\/>)+$/g, ''); //remove one or more occurence of br tag at the end of text
