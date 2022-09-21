@@ -11,6 +11,7 @@
     justify-content: space-between;
     flex-direction: column;
     margin-bottom: 1em !important;
+    position: relative;
 
     header {
         font-size: 3em;
@@ -78,7 +79,7 @@
             background: #3bc6d8;
         }
 
-        >*:not(.date) {
+        >*:not(.date, .getUp) {
             @include flex(fs, c);
             flex-direction: row;
             padding-bottom: 2.5em;
@@ -221,6 +222,28 @@
 
         .sample {
             display: none;
+        }
+
+        .getDown {
+            background-color: var(--question);
+            color: white;
+            @include square(2.5em);
+            border-radius: 50%;
+            @include flex(c,c);
+            position: absolute;
+            bottom: 4.4em;
+            right: 0.6em;
+            cursor: pointer;
+            z-index: 2;
+            transition: .1s;
+
+            transform: scale(.1);
+            opacity: 0;
+
+            &.active {
+                transform: scale(1);
+                opacity: 100;
+            }
         }
     }
 
