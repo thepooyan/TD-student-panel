@@ -204,9 +204,6 @@ $(function () {
     let chat = dc.query('#chat .veiw');
     chat.scrollTo(0, chat.scrollHeight + 500)
   }
-  setTimeout(() => {
-    scrollChat()
-  }, 200);
 
   //get time in am/pm
   function formatAMPM(date) {
@@ -273,7 +270,6 @@ $(function () {
   }
 
   //merge massages
-  setTimeout(() => { mergeMsg() }, 1000);
   function mergeMsg() {
     let prevUser, prevType;
     dc.queries('#chat .veiw > *:not(.date)').forEach(item=>{
@@ -285,4 +281,14 @@ $(function () {
       prevType = type;
     })
   }
+
+  //reply
+  dc.queries('#chat .veiw > *:not(.date)').forEach(item=>{
+    item.querySelector('i').onclick = () => {
+      scrollChat()
+    }
+  })
+
+  mergeMsg();
+  scrollChat();
 })

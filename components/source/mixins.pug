@@ -11,8 +11,9 @@ mixin summary(id, title, sample=[1,2])
 
 
 
-mixin comment(user, text, type=false)
-    div(class=type?'others':'')
+mixin comment(user, text, id, type=false)
+    div(class=type?'others':'', data-id=id)
         .icon(data-user=user)
         span(data-time="12:45 am")
             =text
+            i.fas.fa-reply

@@ -1,7 +1,9 @@
 ﻿section#chat {
+    --question: #7fcedd;
+    --answer: #C8E0FC;
     background-color: #fff;
     box-shadow: 2px 2px 10px #6497bc;
-    border: 2px solid #7fcedd;
+    border: 2px solid var(--question);
     margin: auto;
     border-radius: 14px;
     height: 140vh;
@@ -84,6 +86,7 @@
                 .icon {
                     display: none;
                 }
+
                 span {
                     margin-right: 6em;
                     margin-top: -1.3em;
@@ -121,7 +124,7 @@
             }
 
             span {
-                background-color: #7fcedd;
+                background-color: var(--question);
                 padding: 1em;
                 border-radius: 25px 25px 0 25px;
                 margin: 0 1em;
@@ -138,6 +141,19 @@
                     direction: ltr;
                     white-space: nowrap;
                 }
+
+                i {
+                    color: grey;
+                    position: absolute;
+                    right: 100%;
+                    top: 0;
+                    bottom: 0;
+                    height: min-content;
+                    margin: auto;
+                    padding: 0.4em;
+                    font-size: 1.3em;
+                    cursor: pointer;
+                }
             }
         }
 
@@ -149,12 +165,18 @@
             }
 
             span {
-                background-color: #C8E0FC;
+                background-color: var(--answer);
                 border-radius: 25px 25px 25px 0;
 
                 &::before {
                     right: unset;
                     left: 0;
+                }
+
+                i {
+                    right: unset;
+                    left: 100%;
+                    transform: scaleX(-1);
                 }
             }
         }
@@ -170,6 +192,54 @@
         }
     }
 
+    .reply {
+        font-size: .8em;
+        padding: 0.8em;
+        padding-bottom: 0;
+        background-color: var(--question);
+        display: flex;
+        flex: 0 0 auto;
+        justify-content: space-between;
+        overflow: hidden;
+        transition: .3s;
+        max-height: 10em;
+
+        .others {
+            background-color: var(--answer);
+            flex: 0 0 90.5%;
+            display: flex;
+            flex-direction: column;
+            padding: 0.6em 2em;
+            border-radius: 30px;
+
+            .icon::before {
+                content: attr(data-user) ':';
+                color: var();
+            }
+
+            span {
+                i {
+                    display: none;
+                }
+            }
+        }
+
+        >i {
+            color: white;
+            cursor: pointer;
+            flex: 0 0 7%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.9em;
+        }
+
+        &.closed {
+            max-height: 0;
+            padding: 0;
+        }
+    }
+
     form {
         width: 100%;
         display: flex;
@@ -177,7 +247,7 @@
         align-items: flex-end;
         gap: 1em;
         padding: .8em .5em;
-        background: #7fcedd;
+        background: var(--question);
 
         .input {
             background: #f5f5f5;
@@ -198,6 +268,7 @@
                 outline: none;
                 border-color: #46b4ca;
             }
+
             &:empty::before {
                 content: 'متن خود را بنویسید';
                 color: #a0a0a0;
