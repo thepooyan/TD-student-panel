@@ -84,13 +84,14 @@
             padding-bottom: 2.5em;
 
             &.merge {
+                margin-top: -1.3em;
+
                 .icon {
                     display: none;
                 }
 
                 span {
                     margin-right: 6em;
-                    margin-top: -1.3em;
                 }
 
                 &.others {
@@ -126,13 +127,14 @@
 
             span {
                 background-color: var(--question);
-                padding: 1em;
+                padding: 1em 1.7em;
                 border-radius: 25px 25px 0 25px;
                 margin: 0 1em;
                 position: relative;
                 font-size: 0.8em;
                 font-weight: 500;
                 max-width: 45%;
+                text-align: justify;
 
                 &::before {
                     content: attr(data-time);
@@ -141,6 +143,25 @@
                     right: 0;
                     direction: ltr;
                     white-space: nowrap;
+                }
+
+                a {
+                    position: absolute;
+                    left: 1em;
+                    top: 100%;
+                    font-size: 0.9em;
+                    white-space: nowrap;
+                    color: inherit;
+                    right: 5em;
+                    text-align: left;
+
+                    &::before {
+                    content: 'پاسخ به: ';
+                    }
+
+                    &:empty {
+                        display: none;
+                    }
                 }
 
                 i {
@@ -174,6 +195,12 @@
                     left: 0;
                 }
 
+                a {
+                    left: 5em;
+                    right: 1em;
+                    text-align: right;
+                }
+
                 i {
                     right: unset;
                     left: 100%;
@@ -190,6 +217,10 @@
             width: max-content;
             padding: 0.2em 1em;
             border-radius: 10px;
+        }
+
+        .sample {
+            display: none;
         }
     }
 
@@ -228,6 +259,10 @@
                 i {
                     display: none;
                 }
+            }
+
+            a {
+                display: none;
             }
         }
 

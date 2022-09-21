@@ -182,11 +182,6 @@ $(function () {
             if (index == inputs.length - 1) return
             i.remove();
           })
-          console.log(item)
-
-          // for (let m=0; m < inputs.length; m++) {
-          //   console.log(inputs[m])
-          // }
         }
       })
     }
@@ -216,22 +211,35 @@ $(function () {
     let strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
   }
-
+  
+  let isReply = false;
   //create massage in chat
   function createMsg(text) {
     let chat = dc.query('#chat .veiw');
-    let msg = chat.query('div:not(.others)');
+    let msg = chat.query('.sample');
     let newMsg = msg.cloneNode(true);
+    console.log(newMsg)
+
+    //remove sample class
+    newMsg.classList.remove('sample')
 
     //change username
     newMsg.querySelector('div').dataset.user = 'من';
 
     //change the inner text
-    newMsg.querySelector('span').innerHTML = text;
+    newMsg.querySelector('span .txt').innerHTML = text;
 
     //change time
     let time = formatAMPM(new Date());
     newMsg.querySelector('span').dataset.time = time;
+
+    //add reply
+    if (isReply) {
+      let a = document.createElement('a')
+      a.href = `#${isReply.id}`;
+      a.innerHTML = isReply.user;
+      newMsg.querySelector('span').appendChild(a);
+    }
 
     return newMsg
   }
@@ -251,6 +259,7 @@ $(function () {
     inputTxt = inputTxt.replace(/(<br\/>)+$/g, ''); //remove one or more occurence of br tag at the end of text
 
     dc.query('#chat .veiw').appendChild(createMsg(inputTxt));
+    setReplyEvnt();
     scrollChat();
     mergeMsg();
     closeReply();
@@ -287,19 +296,24 @@ $(function () {
   let replySec = dc.query('#chat .reply');
   function closeReply() {
     replySec.classList.add('closed')
+    isReply = false;
   }
   function openReply(trg) {
     replySec.classList.remove('closed');
     let clone = trg.cloneNode(true);
     replySec.query('div').replaceWith(clone)
     dc.query('#chat form > div').focus();
+    let id = dc.query('#chat .reply > div').id;
+    let user = replySec.query('.icon').dataset.user;
+    isReply = {user ,id};
   }
-  dc.queries('#chat .veiw > *:not(.date)').forEach(item => {
-    item.querySelector('i').onclick = () => {openReply(item)};
-  })
-  dc.queries('#chat .reply > i ').forEach(item => {
-    item.onclick = closeReply;
-  })
+  function setReplyEvnt() {
+    dc.queries('#chat .veiw > *:not(.date)').forEach(item => {
+      item.querySelector('i').onclick = () => {openReply(item)};
+    })
+  }
+  setReplyEvnt();
+  dc.query('#chat .reply > i ').onclick = closeReply;
 
   mergeMsg();
   scrollChat();

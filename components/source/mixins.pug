@@ -11,9 +11,13 @@ mixin summary(id, title, sample=[1,2])
 
 
 
-mixin comment(user, text, id, type=false)
-    div(class=type?'others':'', data-id=id)
+mixin comment(user, text, id, who, reply, isSample=false)
+    -let cl = who=='o'?'others':'';
+    - cl += isSample?'sample':'';
+    div(class=cl, id=id)
         .icon(data-user=user)
         span(data-time="12:45 am")
-            =text
+            .txt=text
             i.fas.fa-reply
+            if (reply)
+                a(href=`#${reply.id}`)= reply.name
