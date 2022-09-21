@@ -80,6 +80,22 @@
             flex-direction: row;
             padding-bottom: 2.5em;
 
+            &.merge {
+                .icon {
+                    display: none;
+                }
+                span {
+                    margin-right: 6em;
+                    margin-top: -1.3em;
+                }
+
+                &.others {
+                    span {
+                        margin-right: unset;
+                        margin-left: 6em;
+                    }
+                }
+            }
 
             .icon {
                 --wid: 4em;

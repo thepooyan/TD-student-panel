@@ -255,6 +255,7 @@ $(function () {
 
     dc.query('#chat .veiw').appendChild(createMsg(inputTxt));
     scrollChat();
+    mergeMsg();
     input.innerText = '';
   }
 
@@ -284,5 +285,4 @@ $(function () {
       prevType = type;
     })
   }
-  window.mergeMsg = mergeMsg;
 })
