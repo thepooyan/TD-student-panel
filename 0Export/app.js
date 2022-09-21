@@ -282,7 +282,7 @@ $(function () {
   //merge massages
   function mergeMsg() {
     let prevUser, prevType;
-    dc.queries('#chat .veiw > *:not(.date)').forEach(item => {
+    dc.queries('#chat .veiw > div').forEach(item => {
       let user = item.querySelector('div').dataset.user;
       let type = item.classList.contains('others') ? true : false;
       if (user === prevUser && type === prevType)
@@ -308,12 +308,15 @@ $(function () {
     isReply = {user ,id};
   }
   function setReplyEvnt() {
-    dc.queries('#chat .veiw > *:not(.date)').forEach(item => {
+    dc.queries('#chat .veiw > div').forEach(item => {
       item.querySelector('i').onclick = () => {openReply(item)};
     })
   }
   setReplyEvnt();
   dc.query('#chat .reply > i ').onclick = closeReply;
+
+  //getDown
+  dc.query('#chat .veiw > .getDown').onclick = scrollChat;
 
   mergeMsg();
   scrollChat();
