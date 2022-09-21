@@ -10,6 +10,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    margin-bottom: 1em !important;
 
     header {
         font-size: 3em;
@@ -201,20 +202,26 @@
         flex: 0 0 auto;
         justify-content: space-between;
         overflow: hidden;
-        transition: .3s;
-        max-height: 10em;
+        transition: .1s;
+        max-height: 7.5em;
+        padding: 0;
 
-        .others {
+        >div {
             background-color: var(--answer);
             flex: 0 0 90.5%;
             display: flex;
             flex-direction: column;
-            padding: 0.6em 2em;
             border-radius: 30px;
+            margin: 0.8em 0.5em;
+            margin-bottom: 0;
+            padding: 0.6em 2em;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             .icon::before {
                 content: attr(data-user) ':';
-                color: var();
+                color: #007cff;
+                font-weight: bold;
             }
 
             span {
@@ -236,7 +243,6 @@
 
         &.closed {
             max-height: 0;
-            padding: 0;
         }
     }
 

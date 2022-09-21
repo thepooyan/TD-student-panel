@@ -253,6 +253,7 @@ $(function () {
     dc.query('#chat .veiw').appendChild(createMsg(inputTxt));
     scrollChat();
     mergeMsg();
+    closeReply();
     input.innerText = '';
   }
 
@@ -266,27 +267,38 @@ $(function () {
 
   dc.query('#chat .input').onkeyup = (e) => {
     if (e.target.innerHTML === "<br>")
-    e.target.innerHTML = '';
+      e.target.innerHTML = '';
   }
 
   //merge massages
   function mergeMsg() {
     let prevUser, prevType;
-    dc.queries('#chat .veiw > *:not(.date)').forEach(item=>{
+    dc.queries('#chat .veiw > *:not(.date)').forEach(item => {
       let user = item.querySelector('div').dataset.user;
-      let type = item.classList.contains('others') ? true : false ;
+      let type = item.classList.contains('others') ? true : false;
       if (user === prevUser && type === prevType)
-      item.classList.add('merge')
+        item.classList.add('merge')
       prevUser = user;
       prevType = type;
     })
   }
 
   //reply
-  dc.queries('#chat .veiw > *:not(.date)').forEach(item=>{
-    item.querySelector('i').onclick = () => {
-      scrollChat()
-    }
+  let replySec = dc.query('#chat .reply');
+  function closeReply() {
+    replySec.classList.add('closed')
+  }
+  function openReply(trg) {
+    replySec.classList.remove('closed');
+    let clone = trg.cloneNode(true);
+    replySec.query('div').replaceWith(clone)
+    dc.query('#chat form > div').focus();
+  }
+  dc.queries('#chat .veiw > *:not(.date)').forEach(item => {
+    item.querySelector('i').onclick = () => {openReply(item)};
+  })
+  dc.queries('#chat .reply > i ').forEach(item => {
+    item.onclick = closeReply;
   })
 
   mergeMsg();
