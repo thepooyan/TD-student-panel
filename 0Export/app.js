@@ -218,7 +218,6 @@ $(function () {
     let chat = dc.query('#chat .veiw');
     let msg = chat.query('.sample');
     let newMsg = msg.cloneNode(true);
-    console.log(newMsg)
 
     //remove sample class
     newMsg.classList.remove('sample')
@@ -316,7 +315,21 @@ $(function () {
   dc.query('#chat .reply > i ').onclick = closeReply;
 
   //getDown
-  dc.query('#chat .veiw > .getDown').onclick = scrollChat;
+  let getDown = dc.query('#chat .veiw > .getDown');
+  getDown.onclick = scrollChat;
+
+
+  //scroll events
+  let chatVeiw = dc.query('#chat .veiw');
+  chatVeiw.onscroll = () => {
+    let scrollHeight = chatVeiw.scrollHeight - chatVeiw.offsetHeight;
+    // console.log(`${chatVeiw.scrollTop} of ${scrollHeight}`)
+      if (chatVeiw.scrollTop >= scrollHeight) {
+        getDown.classList.remove('active')
+      } else {
+        getDown.classList.add('active')
+      }
+  }
 
   mergeMsg();
   scrollChat();

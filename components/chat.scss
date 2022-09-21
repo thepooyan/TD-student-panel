@@ -236,9 +236,9 @@
             right: 0.6em;
             cursor: pointer;
             z-index: 2;
-            transition: .1s;
+            transition: .2s .2s;
 
-            transform: scale(.1);
+            transform: scale(.3);
             opacity: 0;
 
             &.active {
