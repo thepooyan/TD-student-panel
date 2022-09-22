@@ -239,6 +239,7 @@ $(function () {
       let a = document.createElement('a')
       a.href = `#${isReply.id}`;
       a.innerHTML = isReply.user;
+      a.onclick = (e) => {scrollReplyEvnt(a, e)}
       newMsg.querySelector('span').appendChild(a);
     }
 
@@ -335,31 +336,33 @@ $(function () {
 
   //scroll to reply
   dc.queries('#chat .veiw > div span a').forEach(item => {
-    item.onclick = (e) => {
-      if (item.hash !== "") {
-        e.preventDefault();
-        var hash = item.getAttribute('href');
-        let target = dc.id(hash.substring(1));
-
-        let header = dc.query('#chat header')
-
-        $('#chat .veiw').animate(
-          { scrollTop: target.offsetTop - header.offsetHeight - (chatVeiw.offsetHeight / 2), },
-          900,
-          () => { heighlightTrg(target) }
-          );
-
-        //heighlight reply
-        function heighlightTrg(trg) {
-          trg.classList.add('blink')
-          trg.addEventListener('animationend', () => {
-            trg.classList.remove('blink')
-          }, { once: true })
-        }
-
-      }
-    }
+    item.onclick = (e) => {scrollReplyEvnt(item, e)};
   })
+
+  function scrollReplyEvnt(item, e) {
+    if (item.hash !== "") {
+      e.preventDefault();
+      var hash = item.getAttribute('href');
+      let target = dc.id(hash.substring(1));
+
+      let header = dc.query('#chat header')
+
+      $('#chat .veiw').animate(
+        { scrollTop: target.offsetTop - header.offsetHeight - (chatVeiw.offsetHeight / 2), },
+        900,
+        () => { heighlightTrg(target) }
+        );
+
+      //heighlight reply
+      function heighlightTrg(trg) {
+        trg.classList.add('blink')
+        trg.addEventListener('animationend', () => {
+          trg.classList.remove('blink')
+        }, { once: true })
+      }
+
+    }
+  }
 
   mergeMsg();
   scrollChat();
