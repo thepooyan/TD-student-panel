@@ -81,7 +81,7 @@ $(function () {
   })
 
   // Add smooth scrolling to all links
-  $("a").on('click', function (event) {
+  $("a[href^='#'].smooth").on('click', function (event) {
     if (this.hash !== "") {
       event.preventDefault();
       var hash = this.hash;
