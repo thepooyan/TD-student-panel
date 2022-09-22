@@ -197,7 +197,9 @@ $(function () {
   //scroll chat to the end
   function scrollChat() {
     let chat = dc.query('#chat .veiw');
-    chat.scrollTo(0, chat.scrollHeight + 500)
+    $('#chat .veiw').animate({
+      scrollTop: chat.scrollHeight + 500
+    }, 900);
   }
 
   //get time in am/pm
@@ -330,6 +332,40 @@ $(function () {
         getDown.classList.add('active')
       }
   }
+
+  //scroll to target reply
+  dc.queries('#chat .veiw > div span a').forEach(item=>{
+    item.onclick = (e) => {
+      if (item.hash !== "") {
+        e.preventDefault();
+        var hash = item.getAttribute('href');
+        let target = dc.id(hash.substring(1));
+
+        let header = dc.query('#chat header')
+
+        $('#chat .veiw').animate({
+          scrollTop: target.offsetTop - header.offsetHeight - (chatVeiw.offsetHeight / 2)
+        }, 900);
+
+        //heighlight target reply
+        let scrollTimeout;
+        chatVeiw.addEventListener('scroll', func)
+        function func() {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(function() {
+              
+              target.classList.add('blink')
+              target.addEventListener('animationend', ()=>{
+                target.classList.remove('blink')
+              }, {once: true})
+
+              chatVeiw.removeEventListener('scroll', func)
+          }, 100);
+        }
+
+      }
+    }
+  })
 
   mergeMsg();
   scrollChat();

@@ -55,7 +55,7 @@
         // background-color: #f5f5f5;
         background-color: #f5f5f5;
         color: #42515a;
-        padding: 2em 1em;
+        padding: 2em 0;
         overflow-y: scroll;
 
         /* width */
@@ -83,10 +83,11 @@
         >*:not(.date, .getUp) {
             @include flex(fs, c);
             flex-direction: row;
-            padding-bottom: 2.5em;
+            padding: .5em 1em;
+            padding-bottom: 2em;
 
             &.merge {
-                margin-top: -1.3em;
+                // margin-top: -1.3em;
 
                 .icon {
                     display: none;
@@ -100,6 +101,18 @@
                     span {
                         margin-right: unset;
                         margin-left: 6em;
+                    }
+                }
+            }
+
+            &.blink {
+                animation: blink 2s cubic-bezier(.47,0,.74,.71);
+                @keyframes blink {
+                    0% {
+                        background-color: #e3e3e3;
+                    }
+                    100% {
+                        background-color: transparent;
                     }
                 }
             }
@@ -262,7 +275,7 @@
             flex: 0 0 auto;
             justify-content: space-between;
             overflow: hidden;
-            transition: .1s;
+            transition: .2s;
             max-height: 7.5em;
             padding: 0;
     
