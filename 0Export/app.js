@@ -234,6 +234,10 @@ $(function () {
     let time = formatAMPM(new Date());
     newMsg.querySelector('span').dataset.time = time;
 
+    //new ID
+    let lastId = dc.query('#chat .veiw > div:last-child').id;
+    newMsg.id = ++lastId;
+
     //add reply
     if (isReply) {
       let a = document.createElement('a')
