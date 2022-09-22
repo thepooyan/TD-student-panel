@@ -79,6 +79,7 @@
             background: #3bc6d8;
         }
 
+        //All massages
         >*:not(.date, .getUp) {
             @include flex(fs, c);
             flex-direction: row;
@@ -155,9 +156,11 @@
                     color: inherit;
                     right: 5em;
                     text-align: left;
+                    color: #0093ff;
 
                     &::before {
-                    content: 'پاسخ به: ';
+                        content: 'پاسخ به: ';
+                        color: #42515a;
                     }
 
                     &:empty {
@@ -180,6 +183,7 @@
             }
         }
 
+        //left side massages
         .others {
             flex-direction: row-reverse;
 
