@@ -315,7 +315,7 @@ $(function () {
   dc.query('#chat .reply > i ').onclick = closeReply;
 
   //getDown
-  let getDown = dc.query('#chat .veiw > .getDown');
+  let getDown = dc.query('#chat .wrap .getDown');
   getDown.onclick = scrollChat;
 
 
