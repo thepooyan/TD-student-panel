@@ -213,7 +213,7 @@ $(function () {
     let strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
   }
-  
+
   let isReply = false;
   //create massage in chat
   function createMsg(text) {
@@ -306,11 +306,11 @@ $(function () {
     dc.query('#chat form > div').focus();
     let id = dc.query('#chat .reply > div').id;
     let user = replySec.query('.icon').dataset.user;
-    isReply = {user ,id};
+    isReply = { user, id };
   }
   function setReplyEvnt() {
     dc.queries('#chat .veiw > div').forEach(item => {
-      item.querySelector('i').onclick = () => {openReply(item)};
+      item.querySelector('i').onclick = () => { openReply(item) };
     })
   }
   setReplyEvnt();
@@ -326,15 +326,15 @@ $(function () {
   chatVeiw.onscroll = () => {
     let scrollHeight = chatVeiw.scrollHeight - chatVeiw.offsetHeight;
     // console.log(`${chatVeiw.scrollTop} of ${scrollHeight}`)
-      if (chatVeiw.scrollTop >= scrollHeight) {
-        getDown.classList.remove('active')
-      } else {
-        getDown.classList.add('active')
-      }
+    if (chatVeiw.scrollTop >= scrollHeight) {
+      getDown.classList.remove('active')
+    } else {
+      getDown.classList.add('active')
+    }
   }
 
-  //scroll to target reply
-  dc.queries('#chat .veiw > div span a').forEach(item=>{
+  //scroll to reply
+  dc.queries('#chat .veiw > div span a').forEach(item => {
     item.onclick = (e) => {
       if (item.hash !== "") {
         e.preventDefault();
@@ -343,24 +343,18 @@ $(function () {
 
         let header = dc.query('#chat header')
 
-        $('#chat .veiw').animate({
-          scrollTop: target.offsetTop - header.offsetHeight - (chatVeiw.offsetHeight / 2)
-        }, 900);
+        $('#chat .veiw').animate(
+          { scrollTop: target.offsetTop - header.offsetHeight - (chatVeiw.offsetHeight / 2), },
+          900,
+          () => { heighlightTrg(target) }
+          );
 
-        //heighlight target reply
-        let scrollTimeout;
-        chatVeiw.addEventListener('scroll', func)
-        function func() {
-          clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(function() {
-              
-              target.classList.add('blink')
-              target.addEventListener('animationend', ()=>{
-                target.classList.remove('blink')
-              }, {once: true})
-
-              chatVeiw.removeEventListener('scroll', func)
-          }, 100);
+        //heighlight reply
+        function heighlightTrg(trg) {
+          trg.classList.add('blink')
+          trg.addEventListener('animationend', () => {
+            trg.classList.remove('blink')
+          }, { once: true })
         }
 
       }
