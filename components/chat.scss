@@ -372,4 +372,8 @@
             }
         }
     }
+
+    @include media($screen) {
+        display: none;
+    }
 }

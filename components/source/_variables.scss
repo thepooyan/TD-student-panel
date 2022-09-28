@@ -1,8 +1,22 @@
-$LGscreen: 1200px;
+$orientation: screen;
 $screen: 992px;
-$tablet: 768px;
-$SMtablet: 600px;
+$tablet: 698px;
 $mobile: 480px;
+
+@function orientation() {
+    @if ($orientation == 'screen') {
+        @return 'max-width';
+    }
+    @if ($orientation == 'mobile') {
+        @return 'min-width'
+    }
+}
+  
+@mixin media($arg) {
+    @media (orientation(): $arg) {
+        @content
+    }
+}
 
 $get-up: #d50c52;
 $coolOrange: #FEC715;

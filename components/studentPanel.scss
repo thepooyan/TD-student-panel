@@ -43,7 +43,7 @@
 
         >.side {
             position: absolute;
-            right: -70px;
+            right: -5%;
             bottom: 0;
             height: 100%;
         }
@@ -708,5 +708,39 @@
             }
         }
 }
+
+@include media($screen) { //992 - 699
+    font-size: .8em;
+    > header {
+        padding-top: 0;
+        > .header {
+            width: 78%;
+        }
+        .right {
+            width: 49%;
+            font-size: 1.5vw;
+        }
+    }
+    > main {
+        margin: 0 3vw;
+        nav > ul {
+            font-size: 1.5vw;
+        }
+        #myPractice {
+
+            .pad {
+                width: 89%;
+            }
+            &::before, &::after {
+                font-size: .7em;
+            }
+        }
+    }
 }
-@import 'Media/studentPanelMedia';
+@include media($tablet) { //698 - 481
+    background-color: red;
+}
+@include media($mobile) { //480 - 320
+    background-color: blue;
+}
+}
