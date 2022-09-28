@@ -184,8 +184,10 @@ $calendarButtonRed: #be1623;
 }
 
 @mixin square($item) {
-    width: $item;
-    height: $item;
+    $wid:wid;
+    --#{$wid}: $item;
+    width: var(--$wid);
+    height: var(--$wid);
 }
 
 @mixin scalePics($width, $height, $scale) {
