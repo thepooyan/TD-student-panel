@@ -106,11 +106,13 @@
             }
 
             &.blink {
-                animation: blink 2s cubic-bezier(.47,0,.74,.71);
+                animation: blink 2s cubic-bezier(.47, 0, .74, .71);
+
                 @keyframes blink {
                     0% {
                         background-color: #e3e3e3;
                     }
+
                     100% {
                         background-color: transparent;
                     }
@@ -244,28 +246,30 @@
 
     .wrap {
         position: relative;
+
         .getDown {
             background-color: var(--question);
             color: white;
             @include square(2.5em);
             padding: 0;
             border-radius: 50%;
-            @include flex(c,c);
+            @include flex(c, c);
             position: absolute;
             bottom: calc(100% + 1em);
             right: 0.6em;
             cursor: pointer;
             z-index: 2;
             transition: .2s .2s;
-    
+
             transform: scale(.3);
             opacity: 0;
-    
+
             &.active {
                 transform: scale(1);
                 opacity: 100;
             }
         }
+
         .reply {
             font-size: .8em;
             padding: 0.8em;
@@ -278,7 +282,7 @@
             transition: .2s;
             max-height: 7.5em;
             padding: 0;
-    
+
             >div {
                 background-color: var(--answer);
                 flex: 0 0 90.5%;
@@ -290,24 +294,24 @@
                 padding: 0.6em 2em;
                 overflow: hidden;
                 text-overflow: ellipsis;
-    
+
                 .icon::before {
                     content: attr(data-user) ':';
                     color: #007cff;
                     font-weight: bold;
                 }
-    
+
                 span {
                     i {
                         display: none;
                     }
                 }
-    
+
                 a {
                     display: none;
                 }
             }
-    
+
             >i {
                 color: white;
                 cursor: pointer;
@@ -317,7 +321,7 @@
                 align-items: center;
                 font-size: 1.9em;
             }
-    
+
             &.closed {
                 max-height: 0;
             }
@@ -330,13 +334,12 @@
         display: flex;
         justify-content: space-around;
         align-items: flex-end;
-        gap: 1em;
         padding: .8em .5em;
         background: var(--question);
 
-        .input {
+        .input[contenteditable] {
             background: #f5f5f5;
-            flex: 0 0 90%;
+            flex: 0 0 88%;
             font-family: inherit;
             border-radius: 5px;
             border: 1px solid transparent;
@@ -357,6 +360,19 @@
             &:empty::before {
                 content: 'متن خود را بنویسید';
                 color: #a0a0a0;
+            }
+        }
+
+        label {
+            flex: 0 0 2.5%;
+            color: #000000b5;
+            font-size: 1.3em;
+            margin-bottom: 0.35em;
+            text-align: center;
+            cursor: pointer;
+
+            input {
+                display: none;
             }
         }
 
