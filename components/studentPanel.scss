@@ -381,7 +381,9 @@
                         }
                     }
 
-                    span {text-align: center;}
+                    span {
+                        text-align: center;
+                    }
                 }
             }
 
@@ -947,6 +949,9 @@
                 margin: 0;
                 width: 100%;
                 border-width: 0.8em;
+                main {
+                    width: 100%;
+                }
             }
 
             &::before,
@@ -966,6 +971,7 @@
     //480 - 320
     >main {
         padding-top: 5em;
+
         nav {
             padding: 0 1em;
 
@@ -987,6 +993,31 @@
                 font-weight: 100;
             }
 
+        }
+
+        #myPractice {
+            &::before {
+                display: none;
+            }
+            .pad {
+                flex-direction: column;
+                &::after {
+                    --size: 4em;
+                }
+                aside {
+                    width: 100%;
+                    a {width: 38%;}
+                    .sessions {
+                        flex-direction: row;
+                        gap: .7em;
+                        flex-wrap: wrap;
+                        max-height: 11.7em;
+                        span {
+                            flex: 0 0 30%;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -95,10 +95,11 @@ section#studentPanelPage
             button بستن
 
         section#myPractice.fullScreen 
-            - let sixteen = [1,2,3];
+            - let sixteen = [1,2,3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+            - let three = [1,2,3];
             h2 تمرین های من
             .pad
-                each i in sixteen
+                each i in three
                     main(id="session" + i, data-group="padMain",class=i==1?'active':'')
                         each ii in [1,2,3, 4, 5, 6, 7, 8]
                             //- .item= `دوره آموزش طراحی سایت تابستان 98 - جلسه ${i} تمرین ${ii}`
@@ -115,7 +116,7 @@ section#studentPanelPage
                                         a(href="#") دانلود فیلم
                 aside 
                     .sessions 
-                        each i in sixteen
+                        each i in three
                             span(data-onclick="active", data-group="padSession", data-target="#session"+i,class=i==1?'active':'')= `جلسه ${i}`                 
                     a(href="#practiceModal") 
                         button افزودن                    
