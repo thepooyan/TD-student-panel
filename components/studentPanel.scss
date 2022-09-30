@@ -243,7 +243,7 @@
             }
         }
 
-            .summary {
+        .summary {
                 --border-thick: 5px;
                 --title-offset: 7px;
                 --h3-width: 264px;
@@ -556,6 +556,7 @@
                         .top {
                             display: flex;
                             justify-content: space-between;
+                            text-align: center;
                         }
 
                         .details {
@@ -649,11 +650,18 @@
                         width: 70%;
                         display: block;
                         margin: auto;
-                        padding: 0.1em 1em;
+                        padding: 0.1em .4em;
                         cursor: pointer;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        direction: ltr;
 
-                        span:empty::before {
-                            content: "انتخاب فایل";
+                        span {
+                            white-space: nowrap;
+                            &:empty::after {
+                                content: "انتخاب فایل";
+                                float: right;
+                            }
                         }
                     }
 
@@ -898,6 +906,9 @@
             &::before, &::after {
                 font-size: 0.7em;
             }
+        }
+        #practiceModal {
+            padding: 0;
         }
     }
 }
