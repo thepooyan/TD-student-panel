@@ -346,6 +346,9 @@
                     margin-bottom: 0.5em;
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
+                    gap: 1em;
+                    flex-wrap: wrap;
 
                     &:nth-child(2n) {
                         background-color: transparent;
@@ -377,6 +380,8 @@
                             opacity: 100;
                         }
                     }
+
+                    span {text-align: center;}
                 }
             }
 
