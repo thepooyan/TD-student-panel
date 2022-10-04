@@ -194,11 +194,14 @@ $(function () {
     }
   })()
 
+  //!---- CHAT
+  let chatButton = dc.query('#chat form button')
+  let chatVeiw = dc.query('#chat .veiw');
+  
   //scroll chat to the end
   function scrollChat() {
-    let chat = dc.query('#chat .veiw');
     $('#chat .veiw').animate({
-      scrollTop: chat.scrollHeight + 500
+      scrollTop: chatVeiw.scrollHeight + 500
     }, 900);
   }
 
@@ -251,9 +254,7 @@ $(function () {
   }
 
   //chat submit
-  dc.query('#chat form').onsubmit = (e) => {
-    chatSubmit(e);
-  };
+  dc.query('#chat form').onsubmit = (e) => { chatSubmit(e); };
 
   function chatSubmit(e) {
     if (e.preventDefault) e.preventDefault();
@@ -273,6 +274,7 @@ $(function () {
   }
 
   let br = false;
+
   //chat input details
   dc.query('#chat .input').onkeydown = (e) => {
     if (e.keyCode == 13 && !e.shiftKey) {
@@ -281,8 +283,12 @@ $(function () {
   }
 
   dc.query('#chat .input').onkeyup = (e) => {
-    if (e.target.innerHTML === "<br>")
+    if (e.target.innerHTML === "<br>") {
       e.target.innerHTML = '';
+      chatButton.disabled = true;
+    } else {
+      chatButton.disabled = false;
+    }
   }
 
   //merge massages
@@ -327,7 +333,6 @@ $(function () {
 
 
   //scroll events
-  let chatVeiw = dc.query('#chat .veiw');
   chatVeiw.onscroll = () => {
     let scrollHeight = chatVeiw.scrollHeight - chatVeiw.offsetHeight;
     // console.log(`${chatVeiw.scrollTop} of ${scrollHeight}`)
