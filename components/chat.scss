@@ -85,8 +85,10 @@
         >*:not(.date, .getUp) {
             @include flex(fs, c);
             flex-direction: row;
-            padding: .5em 1em;
+            padding: .5em;
             padding-bottom: 2em;
+            margin: 0 .5em;
+            border-radius: 15px;
 
             &.merge {
                 // margin-top: -1.3em;
