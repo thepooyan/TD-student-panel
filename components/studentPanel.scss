@@ -477,9 +477,10 @@
                 position: absolute;
                 bottom: -1px;
                 right: -1px;
-                --size: 9em;
                 border-top: var(--size) solid #eee;
                 border-right: var(--size) solid #4ab4e4;
+                transition: 1s;
+                --size: 40em;
             }
 
             aside {
@@ -596,6 +597,10 @@
                         }
                     }
                 }
+            }
+
+            &.active::after {
+                --size: 9em;
             }
         }
 
@@ -1002,7 +1007,7 @@
             .pad {
                 flex-direction: column;
                 &::after {
-                    --size: 4em;
+                    --size: 20em;
                 }
                 aside {
                     width: 100%;
@@ -1016,6 +1021,10 @@
                             flex: 0 0 30%;
                         }
                     }
+                }
+
+                &.active::after {
+                    --size: 4em;
                 }
             }
         }
