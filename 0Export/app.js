@@ -232,12 +232,39 @@ $(function () {
   chat.veiw = chat.query('.veiw');
   chat.veiw.msgs = chat.queries('.veiw > div')
   chat.veiw.msgSample = chat.veiw.query('.sample');
+  chat.veiw.context = chat.veiw.query('.context');
   chat.form = chat.query('form');
   chat.form.button = chat.form.query('button');
   chat.header = chat.query('#chat header')
   chat.getDown = chat.query('#chat .wrap .getDown');
   chat.reply = chat.query('.reply');
   chat.input = chat.query('#chat form .input');
+
+  //massages right click
+  chat.veiw.msgs.forEach(item=>{setRightClickEvnt(item)})
+
+  function setRightClickEvnt(item) {
+    item.oncontextmenu = (e) => {
+      e.preventDefault()
+      let rightOffset = window.innerWidth - chat.getBoundingClientRect().right;
+      let x = e.clientX - rightOffset;
+
+      let y =  window.pageYOffset - chat.offsetTop + chat.veiw.scrollTop + e.clientY - 360;
+
+      console.log(window.pageYOffset)
+      console.log(chat.offsetTop)
+
+      openContextMenu(x,y, item.id)
+    }
+  }
+
+  function openContextMenu(x, y, id) {
+    chat.veiw.context.style.left = x + 'px';
+    chat.veiw.context.style.top = y + 'px';
+    chat.veiw.context.classList.add('active');
+
+    console.log(`delete this id: ${id}`)
+  }
 
   //scroll chat to the end
   function scrollChat() {
