@@ -89,6 +89,7 @@
             padding-bottom: 2em;
             margin: 0 .5em;
             border-radius: 15px;
+            transition: .3s;
 
             &.merge {
                 // margin-top: -1.3em;
@@ -121,6 +122,10 @@
                         background-color: transparent;
                     }
                 }
+            }
+
+            &.select {
+                background-color: #e3e3e3;
             }
 
             .icon {
@@ -251,6 +256,7 @@
             position: relative;
             height: 0;
             padding: 0;
+
             .context {
                 position: absolute;
                 background-color: white;
@@ -266,8 +272,10 @@
                 overflow: hidden;
                 opacity: 0;
                 transform: scale(0);
+                transform-origin:top left;
                 height: max-content;
-                
+                transition: transform .2s, opacity .2s;
+
                 &.active {
                     opacity: 100;
                     transform: scale(1);
@@ -280,7 +288,7 @@
                     cursor: pointer;
                     overflow: hidden;
                     color: #42515a;
-        
+
                     &:hover {
                         background-color: rgba(0, 0, 0, 0.1);
                     }
@@ -447,17 +455,21 @@
         header {
             padding: 0.6em 0;
             padding-bottom: 35vw;
-            &::before, &::after {
+
+            &::before,
+            &::after {
                 font-size: 5.5vw;
             }
         }
 
         .veiw {
             --offset: 73%;
+
             > :not(.date, .getUp) {
                 font-size: .9em;
                 padding: 1em .1em;
                 padding-bottom: 1.4em;
+
                 .icon {
                     font-size: .9em;
                 }
@@ -466,13 +478,16 @@
 
         form {
             border-radius: 0;
+
             .input[contenteditable] {
                 flex: 0 0 72%;
             }
+
             button {
                 flex: 0 0 16%;
                 font-weight: 100;
             }
+
             label.fas {
                 margin-bottom: 0.55em;
             }

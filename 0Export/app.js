@@ -240,30 +240,47 @@ $(function () {
   chat.reply = chat.query('.reply');
   chat.input = chat.query('#chat form .input');
 
-  //massages right click
-  chat.veiw.msgs.forEach(item=>{setRightClickEvnt(item)})
+  //massages right click and delete msg
+  chat.veiw.msgs.forEach(item=>{
+    setRightClickEvnt(item)
+    setClickEvnt(item);
+  })
 
+  let selectedMsg;
   function setRightClickEvnt(item) {
     item.oncontextmenu = (e) => {
       e.preventDefault()
       let rightOffset = window.innerWidth - chat.getBoundingClientRect().right;
       let x = e.clientX - rightOffset;
 
-      let y =  window.pageYOffset - chat.offsetTop + chat.veiw.scrollTop + e.clientY - 360;
+      let y =  window.pageYOffset - chat.offsetTop + chat.veiw.scrollTop + e.clientY - 280;
 
-      console.log(window.pageYOffset)
-      console.log(chat.offsetTop)
-
-      openContextMenu(x,y, item.id)
+      openContextMenu(x,y)
+      if (selectedMsg) selectedMsg.classList.remove('select')
+      item.classList.add('select')
+      selectedMsg = item;
     }
   }
 
-  function openContextMenu(x, y, id) {
+  function setClickEvnt(item) {
+    item.onclick = (e) => {
+      if (chat.veiw.context.contains(e.target)) {
+        deleteMsg(selectedMsg)
+      }
+      chat.veiw.context.classList.remove('active');
+      selectedMsg.classList.remove('select');
+      selectedMsg = null;
+    }
+  }
+
+  function openContextMenu(x, y) {
     chat.veiw.context.style.left = x + 'px';
     chat.veiw.context.style.top = y + 'px';
     chat.veiw.context.classList.add('active');
+  }
 
-    console.log(`delete this id: ${id}`)
+  function deleteMsg(msg) {
+    msg.remove();
   }
 
   //scroll chat to the end
