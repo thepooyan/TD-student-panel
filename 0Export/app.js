@@ -239,15 +239,21 @@ $(function () {
   chat.getDown = chat.query('#chat .wrap .getDown');
   chat.reply = chat.query('.reply');
   chat.input = chat.query('#chat form .input');
+  let selectedMsg;
+  let isEdit = false;
+  let isReply = false;
+  let br = false;
 
   //massages right click and delete msg
-  chat.veiw.msgs.forEach(item => {
-    setRightClickEvnt(item)
-    setClickEvnt(item);
-  })
+  function setAllClickEvnts() {
+    chat.veiw.msgs.forEach(item => {
+      setRightClickEvnt(item)
+      setClickEvnt(item);
+    })
+  }
+  setAllClickEvnts();
   setClickEvnt(chat.veiw.context)
 
-  let selectedMsg;
   function setRightClickEvnt(item) {
     item.oncontextmenu = (e) => {
       e.preventDefault()
@@ -297,13 +303,26 @@ $(function () {
   function deleteMsg(msg) {
     msg.remove();
   }
-  let isEdit = false;
+
   function editMsg(msg) {
     isEdit = msg.querySelector('.txt');
     chat.input.innerHTML = isEdit.innerHTML;
-
+    moveCursorToEnd(chat.input);
     scrollToMsg(msg);
     chat.form.button.disabled = false;
+
+  }
+
+  function moveCursorToEnd(el) {
+
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents(el);
+    range.collapse(false);
+    selection.addRange(range);
+
+    el.focus();
   }
 
   //scroll chat to the end
@@ -325,7 +344,6 @@ $(function () {
     return strTime;
   }
 
-  let isReply = false;
   //create massage in chat
   function createMsg(text) {
     let msg = chat.veiw.msgSample;
@@ -384,12 +402,11 @@ $(function () {
     !isEdit && scrollChat();
     mergeMsg();
     closeReply();
+    setAllClickEvnts();
     chat.input.innerText = '';
     chat.form.button.disabled = true;
     isEdit = false;
   }
-
-  let br = false;
 
   //chat input details
   chat.input.onkeydown = (e) => {
