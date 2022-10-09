@@ -60,7 +60,7 @@ $(function () {
     compLoader()
   }
 
-  doSmIfCompIsSeen('.pad', (item)=>{
+  doSmIfCompIsSeen('.pad', (item) => {
     item.classList.add('active')
   }, -500)
 
@@ -241,21 +241,25 @@ $(function () {
   chat.input = chat.query('#chat form .input');
 
   //massages right click and delete msg
-  chat.veiw.msgs.forEach(item=>{
+  chat.veiw.msgs.forEach(item => {
     setRightClickEvnt(item)
     setClickEvnt(item);
   })
+  setClickEvnt(chat.veiw.context)
 
   let selectedMsg;
   function setRightClickEvnt(item) {
     item.oncontextmenu = (e) => {
       e.preventDefault()
+
+      if (item.classList.contains('others')) return;
+
       let rightOffset = window.innerWidth - chat.getBoundingClientRect().right;
       let x = e.clientX - rightOffset;
 
-      let y =  window.pageYOffset - chat.offsetTop + chat.veiw.scrollTop + e.clientY - 280;
+      let y = window.pageYOffset - chat.offsetTop + chat.veiw.scrollTop + e.clientY - 280;
 
-      openContextMenu(x,y)
+      openContextMenu(x, y)
       if (selectedMsg) selectedMsg.classList.remove('select')
       item.classList.add('select')
       selectedMsg = item;
@@ -265,11 +269,22 @@ $(function () {
   function setClickEvnt(item) {
     item.onclick = (e) => {
       if (chat.veiw.context.contains(e.target)) {
-        deleteMsg(selectedMsg)
+        switch (e.target.id) {
+          case 'delete':
+            deleteMsg(selectedMsg)
+            break;
+          case 'edit':
+            editMsg(selectedMsg)
+            break;
+          default:
+            return;
+        }
       }
       chat.veiw.context.classList.remove('active');
-      selectedMsg.classList.remove('select');
-      selectedMsg = null;
+      if (selectedMsg) {
+        selectedMsg.classList.remove('select');
+        selectedMsg = null;
+      }
     }
   }
 
@@ -281,6 +296,14 @@ $(function () {
 
   function deleteMsg(msg) {
     msg.remove();
+  }
+  let isEdit = false;
+  function editMsg(msg) {
+    isEdit = msg.querySelector('.txt');
+    chat.input.innerHTML = isEdit.innerHTML;
+
+    scrollToMsg(msg);
+    chat.form.button.disabled = false;
   }
 
   //scroll chat to the end
@@ -330,7 +353,7 @@ $(function () {
       let a = document.createElement('a')
       a.href = `#${isReply.id}`;
       a.innerHTML = isReply.user;
-      a.onclick = (e) => { scrollReplyEvnt(a, e) }
+      a.onclick = (e) => { veiwReply(a, e) }
       newMsg.querySelector('span').appendChild(a);
     }
 
@@ -348,17 +371,22 @@ $(function () {
     inputTxt = inputTxt.replace(/\n/g, '<br/>');  //replace /n with br tag
     inputTxt = inputTxt.replace(/(<br\/>)+$/g, ''); //remove one or more occurence of br tag at the end of text
 
-    chat.veiw.appendChild(createMsg(inputTxt));
+    if (isEdit) {
+      isEdit.innerHTML = inputTxt;
+    }
+
+    !isEdit && chat.veiw.appendChild(createMsg(inputTxt));
 
     //refresh massages object
     chat.veiw.msgs = chat.veiw.queries('.veiw > div');
 
     setReplyEvnt();
-    scrollChat();
+    !isEdit && scrollChat();
     mergeMsg();
     closeReply();
     chat.input.innerText = '';
     chat.form.button.disabled = true;
+    isEdit = false;
   }
 
   let br = false;
@@ -432,30 +460,35 @@ $(function () {
 
   //scroll to reply
   chat.veiw.queries('.veiw > div span a').forEach(item => {
-    item.onclick = (e) => { scrollReplyEvnt(item, e) };
+    item.onclick = (e) => { veiwReply(item, e) };
   })
 
-  function scrollReplyEvnt(item, e) {
+  function veiwReply(item, e) {
     if (item.hash !== "") {
       e.preventDefault();
       var hash = item.getAttribute('href');
       let target = dc.id(hash.substring(1));
-
-      $('#chat .veiw').animate(
-        { scrollTop: target.offsetTop - chat.header.offsetHeight - (chat.veiw.offsetHeight / 2), },
-        900,
-        () => { heighlightTrg(target) }
-      );
-
-      //heighlight reply
-      function heighlightTrg(trg) {
-        trg.classList.add('blink')
-        trg.addEventListener('animationend', () => {
-          trg.classList.remove('blink')
-        }, { once: true })
-      }
-
+      scrollToMsg(target, () => {
+        heighlightTrg(target)
+      })
     }
+  }
+
+  //heighlight reply
+  function heighlightTrg(trg) {
+    trg.classList.add('blink')
+    trg.addEventListener('animationend', () => {
+      trg.classList.remove('blink')
+    }, { once: true })
+  }
+
+  //scroll to a certain massage
+  function scrollToMsg(msg, callback) {
+    $('#chat .veiw').animate(
+      { scrollTop: msg.offsetTop - chat.header.offsetHeight - (chat.veiw.offsetHeight / 2), },
+      900,
+      callback
+    );
   }
 
   mergeMsg();
