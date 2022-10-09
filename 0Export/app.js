@@ -258,7 +258,10 @@ $(function () {
     item.oncontextmenu = (e) => {
       e.preventDefault()
 
-      if (item.classList.contains('others')) return;
+      if (item.classList.contains('others'))
+      chat.veiw.context.classList.add('others')
+      else
+      chat.veiw.context.classList.remove('others')
 
       let rightOffset = window.innerWidth - chat.getBoundingClientRect().right;
       let x = e.clientX - rightOffset;
@@ -281,6 +284,9 @@ $(function () {
             break;
           case 'edit':
             editMsg(selectedMsg)
+            break;
+          case 'reply':
+            openReply(selectedMsg)
             break;
           default:
             return;
