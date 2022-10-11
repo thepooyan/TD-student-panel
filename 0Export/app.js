@@ -255,24 +255,39 @@ $(function () {
   setClickEvnt(chat.veiw.context)
 
   function setRightClickEvnt(item) {
-    item.oncontextmenu = (e) => {
-      e.preventDefault()
+    item.oncontextmenu = (e) => {contextEvnt(e, item)}
 
+    let touchTimeout;
+    item.addEventListener('touchstart', (e) => {
+      touchTimeout = setTimeout(() => {
+        contextEvnt(e, item)
+      }, 500);
+    })
+    item.addEventListener('touchend', () => {
+      if (touchTimeout) {
+        clearTimeout(touchTimeout)
+      }
+    })
+  }
+
+  function contextEvnt (e, item) {
+      e.preventDefault()
+      let pointX = e.clientX || e.touches[0].clientX;
+      let pointY = e.clientY || e.touches[0].clientY;
       if (item.classList.contains('others'))
       chat.veiw.context.classList.add('others')
       else
       chat.veiw.context.classList.remove('others')
 
       let rightOffset = window.innerWidth - chat.getBoundingClientRect().right;
-      let x = e.clientX - rightOffset;
+      let x = pointX - rightOffset;
 
-      let y = window.pageYOffset - chat.offsetTop + chat.veiw.scrollTop + e.clientY - 280;
-
+      let y = window.pageYOffset - chat.offsetTop + chat.veiw.scrollTop + pointY - 280;
+    
       openContextMenu(x, y)
       if (selectedMsg) selectedMsg.classList.remove('select')
       item.classList.add('select')
       selectedMsg = item;
-    }
   }
 
   function setClickEvnt(item) {
