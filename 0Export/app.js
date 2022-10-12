@@ -269,6 +269,9 @@ $(function () {
         clickEvntHandler(e)
       }
     })
+    item.addEventListener('touchmove', () => {
+      clearTimeout(touchTimeout)
+    })
   }
 
   function clickEvntHandler(e) {
@@ -431,7 +434,7 @@ $(function () {
 
   //chat input details
   chat.input.onkeydown = (e) => {
-    if (e.keyCode == 13 && !e.shiftKey) {
+    if (e.keyCode == 13 && !e.shiftKey && window.innerWidth >= 698) {
       chatSubmit(e);
     }
   }
