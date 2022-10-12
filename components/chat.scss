@@ -85,6 +85,8 @@
         >*:not(.date, .getUp) {
             @include flex(fs, c);
             flex-direction: row;
+            gap: .4em;
+
             padding: .5em;
             padding-bottom: 1.2em;
             margin: 0 .5em;
@@ -105,7 +107,7 @@
                 &.others {
                     span {
                         margin-right: unset;
-                        margin-left: 6em;
+                        margin-left: 4.9em;
                     }
                 }
             }
@@ -132,11 +134,11 @@
                 --wid: 4em;
                 width: var(--wid);
                 height: var(--wid);
+                flex-shrink: 0;
                 background: url('./Content/images/img/Asset\ 4.png');
                 background-size: contain;
                 border-radius: 50%;
                 position: relative;
-                flex-shrink: 0;
                 bottom: 0.4em;
                 font-size: 0.8em;
 
@@ -157,7 +159,6 @@
                 background-color: var(--question);
                 padding: 1em 1.7em;
                 border-radius: 25px 25px 0 25px;
-                margin: 0 1em;
                 position: relative;
                 font-size: 0.8em;
                 font-weight: 500;
@@ -472,9 +473,11 @@
         .veiw {
             --offset: 73%;
 
-            >div {
+            >:not(.date, .getUp) {
                 font-size: .9em;
-
+                padding-right: 0;
+                padding-left: 0;
+                
                 .icon {
                     font-size: .8em;
                 }
