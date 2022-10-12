@@ -247,30 +247,55 @@ $(function () {
   //massages right click and delete msg
   function setAllClickEvnts() {
     chat.veiw.msgs.forEach(item => {
-      setRightClickEvnt(item)
-      setClickEvnt(item);
+      item.oncontextmenu = (e) => contextEvntHandler(e, item)
+      item.onclick = (e) => clickEvntHandler(e)
+      setTouchEvnt(item);
     })
   }
   setAllClickEvnts();
-  setClickEvnt(chat.veiw.context)
+  chat.veiw.context.onclick = e => clickEvntHandler(e)
 
-  function setRightClickEvnt(item) {
-    item.oncontextmenu = (e) => {contextEvnt(e, item)}
-
+  function setTouchEvnt(item) {
     let touchTimeout;
     item.addEventListener('touchstart', (e) => {
       touchTimeout = setTimeout(() => {
-        contextEvnt(e, item)
-      }, 500);
+        contextEvntHandler(e, item)
+        touchTimeout = null;
+      }, 150);
     })
-    item.addEventListener('touchend', () => {
+    item.addEventListener('touchend', (e) => {
       if (touchTimeout) {
         clearTimeout(touchTimeout)
+        clickEvntHandler(e)
       }
     })
   }
 
-  function contextEvnt (e, item) {
+  function clickEvntHandler(e) {
+    if (chat.veiw.context.contains(e.target)) {
+      switch (e.target.id) {
+        case 'delete':
+          deleteMsg(selectedMsg)
+          break;
+        case 'edit':
+          editMsg(selectedMsg)
+          break;
+        case 'reply':
+          openReply(selectedMsg)
+          break;
+        default:
+          return;
+      }
+    }
+    chat.veiw.context.classList.remove('active');
+    if (selectedMsg) {
+      selectedMsg.classList.remove('select');
+      selectedMsg = null;
+    }
+  }
+
+  function contextEvntHandler (e, item) {
+      e.returnValue = false;
       e.preventDefault()
       let pointX = e.clientX || e.touches[0].clientX;
       let pointY = e.clientY || e.touches[0].clientY;
@@ -290,31 +315,6 @@ $(function () {
       selectedMsg = item;
   }
 
-  function setClickEvnt(item) {
-    item.onclick = (e) => {
-      if (chat.veiw.context.contains(e.target)) {
-        switch (e.target.id) {
-          case 'delete':
-            deleteMsg(selectedMsg)
-            break;
-          case 'edit':
-            editMsg(selectedMsg)
-            break;
-          case 'reply':
-            openReply(selectedMsg)
-            break;
-          default:
-            return;
-        }
-      }
-      chat.veiw.context.classList.remove('active');
-      if (selectedMsg) {
-        selectedMsg.classList.remove('select');
-        selectedMsg = null;
-      }
-    }
-  }
-
   function openContextMenu(x, y) {
     chat.veiw.context.style.left = x + 'px';
     chat.veiw.context.style.top = y + 'px';
@@ -328,13 +328,13 @@ $(function () {
   function editMsg(msg) {
     isEdit = msg.querySelector('.txt');
     chat.input.innerHTML = isEdit.innerHTML;
-    moveCursorToEnd(chat.input);
+    moveCarrotToEnd(chat.input);
     scrollToMsg(msg);
     chat.form.button.disabled = false;
 
   }
 
-  function moveCursorToEnd(el) {
+  function moveCarrotToEnd(el) {
 
     const selection = window.getSelection();
     const range = document.createRange();
