@@ -302,16 +302,20 @@ $(function () {
       e.preventDefault()
       let pointX = e.clientX || e.touches[0].clientX;
       let pointY = e.clientY || e.touches[0].clientY;
+      
       if (item.classList.contains('others'))
       chat.veiw.context.classList.add('others')
       else
       chat.veiw.context.classList.remove('others')
 
       let rightOffset = window.innerWidth - chat.getBoundingClientRect().right;
-      let x = pointX - rightOffset;
 
-      let y = window.pageYOffset - chat.offsetTop + chat.veiw.scrollTop + pointY - 280;
-    
+      let x = pointX - rightOffset - chat.veiw.context.clientWidth - 10;
+      let y = window.pageYOffset - chat.offsetTop + chat.veiw.scrollTop + pointY - chat.header.clientHeight - 25;
+      
+      if (x < 0)
+      x = 0;
+
       openContextMenu(x, y)
       if (selectedMsg) selectedMsg.classList.remove('select')
       item.classList.add('select')
