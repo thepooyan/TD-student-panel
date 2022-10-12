@@ -86,20 +86,20 @@
             @include flex(fs, c);
             flex-direction: row;
             padding: .5em;
-            padding-bottom: 2em;
+            padding-bottom: 1.2em;
             margin: 0 .5em;
             border-radius: 15px;
             transition: .3s;
 
             &.merge {
-                // margin-top: -1.3em;
+                padding-top: .4em;
 
                 .icon {
                     display: none;
                 }
 
                 span {
-                    margin-right: 6em;
+                    margin-right: 4.9em;
                 }
 
                 &.others {
@@ -137,6 +137,8 @@
                 border-radius: 50%;
                 position: relative;
                 flex-shrink: 0;
+                bottom: 0.4em;
+                font-size: 0.8em;
 
                 &::before {
                     content: attr(data-user);
@@ -272,7 +274,7 @@
                 overflow: hidden;
                 opacity: 0;
                 transform: scale(0);
-                transform-origin:top right;
+                transform-origin: top right;
                 height: max-content;
                 transition: transform .2s, opacity .2s;
 
@@ -407,9 +409,8 @@
             font-size: .9em;
             overflow-wrap: break-word;
             cursor: text;
-            a
 
-            input {
+            a input {
                 display: none;
             }
 
@@ -471,10 +472,8 @@
         .veiw {
             --offset: 73%;
 
-            > div {
+            >div {
                 font-size: .9em;
-                padding: 1em .1em;
-                padding-bottom: 1.4em;
 
                 .icon {
                     font-size: .8em;
@@ -487,9 +486,10 @@
         }
 
         .wrap .reply {
-            > div {
+            >div {
                 flex: 0 0 80%;
             }
+
             i {
                 flex: 0 0 17%;
                 font-size: 2.1em;
@@ -508,6 +508,7 @@
                 flex: 0 0 16%;
                 font-weight: 700;
                 font-size: .8em;
+
                 &:disabled {
                     font-weight: 500;
                 }
